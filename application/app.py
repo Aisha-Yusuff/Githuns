@@ -1,21 +1,28 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql.cursors
+from cryptography.fernet import Fernet
+
+# encrypt database password with cryptography to connect with aws ec2 mysql
+key = Fernet.generate_key()
+fernet = Fernet(key)
+password = 'Password1!'
+password_bytes = password.encode()
+encrypted_password = fernet.encrypt(password_bytes)
+
 
 app = Flask(__name__)
 
-connection = pymysql.connect(host='database-2.cnyrbefiq91q.eu-west-2.rds.amazonaws.com',
+connection = pymysql.connect(host='52.56.52.147',
                              # host="database-1.cnyrbefiq91q.eu-west-2.rds.amazonaws.com"
                              port=3306,
-                             user="admin",
-                             password="password1",
+                             database="githuns",
+                             user="root",
+                             password=password_bytes,
                              charset="utf8mb4",
                              cursorclass=pymysql.cursors.DictCursor)
 
 categories = ["General Knowledge", "Music", "History", "Movies", "Science"]
 currentUser = ''
-
-
-# https://neil.tesaluna.com/posts/connecting-flask-to-aws-rds/
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -71,5 +78,4 @@ def start(category):
 
 # run the app in debug mode
 if __name__ == "__main__":
-    # dbconnect()
     app.run(debug=True)
