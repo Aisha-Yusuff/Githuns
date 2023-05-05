@@ -1,14 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql.cursors
-from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask(__name__)
 
-connection = pymysql.connect(host="localhost",
+connection = pymysql.connect(host='database-2.cnyrbefiq91q.eu-west-2.rds.amazonaws.com',
+                             # host="database-1.cnyrbefiq91q.eu-west-2.rds.amazonaws.com"
                              port=3306,
-                             user="root",
-                             password="password",
-                             database="githuns",
+                             user="admin",
+                             password="password1",
                              charset="utf8mb4",
                              cursorclass=pymysql.cursors.DictCursor)
 
