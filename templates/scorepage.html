@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Score</title>
+</head>
+<body>
+    <h1>Well done! You've completed the Quiz!</h1>
+    <h2>Here is your overall score</h2>
+    <ul>
+		<li>{{name.name}}</li>
+        <li>{{score}}</li>
+    </ul>
+    <p> Click the button below to see where you are on the leaderboard!</p>
+    <form action="{{ url_for('return_home') }}" method="post">
+        <input type="submit" value="Return Home">
+    </form>
+    <form action="{{ url_for('leaderboard') }}" method="post">
+        <input type="submit" value="Leaderboard">
+    </form>
+</body>
+</html>
