@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choices</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+
+<a href="/bug_report" class="bug-report-button">
+  <img src="/static/images/bug.png" alt="Bug Icon">
+</a>
+
+<form action="/quiz" method="post">
+
+  <div class="container">
+       <h1>Hello, {{name.name}}!</h1>
+      <h2> Pick a difficulty: </h2>
+    <div class="radio-row">
+      <div class="input-container">
+        <input type="radio" id="easy" name="difficulty" value="easy" checked="checked">
+        <div class="radio-tile">
+          <label for="easy">Easy</label>
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="radio" id="medium" name="difficulty" value="medium">
+        <div class="radio-tile">
+          <label for="medium">Medium</label>
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="radio" id="hard" name="difficulty" value="hard">
+        <div class="radio-tile">
+          <label for="hard">Hard</label>
+        </div>
+      </div>
+    </div>
+
+    <h2> Pick a category: </h2>
+
+
+
+    <div class="radio-row">
+      <div class="input-container">
+        <input type="radio" id="sport" name="category" value="21">
+        <div class="radio-tile">
+          <label for="sport">Sport</label>
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="radio" id="science" name="category" value="10">
+        <div class="radio-tile">
+          <label for="science">Science</label>
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="radio" id="mix" name="category" value="0" checked="checked">
+        <div class="radio-tile">
+          <label for="mix">Mix</label>
+        </div>
+      </div>
+     <div class="input-container">
+        <input type="radio" id="Mythology" name="category" value="20" >
+        <div class="radio-tile">
+          <label for="mythology">Mythology</label>
+        </div>
+      </div>
+        <div class="input-container">
+            <input type="radio" id="Celebrities" name="category" value="26" >
+            <div class="radio-tile">
+              <label for="celebrities">Celebrities</label>
+            </div>
+          </div>
+        <div class="input-container">
+            <input type="radio" id="politics" name="category" value="24" >
+            <div class="radio-tile">
+              <label for="politics">Politics</label>
+            </div>
+          </div>
+    </div>
+
+
+      <input class="rounded-pink-button"type="submit" value="Submit">
+  </div>
+
+  </form>
+
+</body>
+
+</html>
+
+
+

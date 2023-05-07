@@ -30,5 +30,8 @@
     {% endfor %}
 		</tbody>
 	</table>
+    <form action="{{ url_for('return_home') }}" method="post">
+        <input type="submit" value="Play Again">
+    </form>
 </body>
 </html>

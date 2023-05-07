@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql.cursors
 from cryptography.fernet import Fernet
+import questions_api
+from questions import get_question, check_answer, questions_left
+import requests
+import csv
 
 # encrypt database password with cryptography to connect with aws ec2 mysql
 key = Fernet.generate_key()
@@ -9,8 +13,10 @@ password = 'Password1!'
 password_bytes = password.encode()
 encrypted_password = fernet.encrypt(password_bytes)
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
+score = 0
+questions_list = []
+lives = 5
 
 connection = pymysql.connect(host='localhost',
                              # host='52.56.52.147',
@@ -22,19 +28,112 @@ connection = pymysql.connect(host='localhost',
                              charset="utf8mb4",
                              cursorclass=pymysql.cursors.DictCursor)
 
+currentUser = ''
 
-# class ScoreKeeper:
-#     def __init__(self):
-#         self.score = 0
-#
-#     def add_points(self, points):
-#         self.score += points
+
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST' and 'name' in request.form:
+
+        # fetch the form data - the user's name
+        username = request.form['name']
+
+        # save name to the db
+        try:
+            # Open the connection
+            connection.ping(reconnect=True)
+            with connection:
+                with connection.cursor() as cursor:
+                    sql = "INSERT INTO `scores`(`name`) VALUE (%s)"
+                    cursor.execute(sql, username)
+                connection.commit()
+        except Exception as e:
+            print(e)
+
+        return redirect(url_for('choices'))
+    else:
+        return render_template('home.html')
+
+
+@app.route("/choices", methods=["GET", "POST"])
+def choices():
+    connection.ping(reconnect=True)
+    #     select username from db
+    with connection:
+        with connection.cursor() as cursor:
+            sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            name = result
+    print(name)
+    return render_template("choices.html", name=name)
+
+
+@app.route('/quiz', methods=['POST'])
+def choice():
+    global questions_list
+    if request.method == 'POST':
+        if request.form["difficulty"]:
+            difficulty = request.form["difficulty"]
+            category = request.form["category"]
+            questions_list = questions_api.get_questions(difficulty, category)
+    question = (get_question(questions_list))
+    return render_template('quiz.html', question=question, score=score, lives=lives)
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    global score
+    global questions_list
+    global lives
+
+    try:
+        # Open the connection
+        connection.ping(reconnect=True)
+        with connection:
+            with connection.cursor() as cursor:
+                # Fetch the name from the database
+                sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
+                cursor.execute(sql)
+                name = cursor.fetchone()
+                print(name)
+
+            score, q_result, lives = check_answer(request, score, lives)
+            if lives <= 0:
+                return render_template("scorepage.html", score=score, name=name)
+
+            if questions_left(questions_list):
+                question = get_question(questions_list)
+                return render_template('quiz.html', question=question, score=score, result=q_result, lives=lives)
+            else:
+                highest_score = 0
+                with open("score.csv", mode="r", newline='') as data:
+                    writer = csv.reader(data)
+                    for row in writer:
+                        row_score = int(row[0])
+                        if row_score > highest_score:
+                            highest_score = row_score
+                if score > highest_score:
+                    with open("score.csv", mode="w", newline='') as data:
+                        writer = csv.writer(data)
+                        writer.writerow([score])
+
+                # Update the score in the database
+                with connection:
+                    with connection.cursor() as cursor:
+                        sql = "UPDATE `scores` SET `score` = %s WHERE `name` = %s"
+                        cursor.execute(sql, (score, name['name']))
+                    connection.commit()
+                    print("Score updated successfully.")
+    except pymysql.Error as e:
+        print(f"Error updating score: {e}")
+
+    return render_template("scorepage.html", score=score, name=name)
+
 
 @app.route('/score')
-# need to add parameters, so that it looks for the right variables
 def display_scores():
     # render user list
-    score = 0
     connection.ping(reconnect=True)
     with connection:
         with connection.cursor() as cursor:
@@ -57,64 +156,18 @@ def leaderboard():
             sql = "SELECT name, score FROM scores ORDER BY score DESC;"
             cursor.execute(sql)
             leaderboard = cursor.fetchall()
-            print(leaderboard)
     return render_template('leaderboard.html', leaderboard=leaderboard)
 
 
-categories = ["General Knowledge", "Music", "History", "Movies", "Science"]
-currentUser = ''
-
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    if request.method == 'POST' and 'name' in request.form:
-
-        # fetch the form data - the user's name
-        username = request.form['name']
-
-        # save name to the db
-        try:
-            with connection:
-                with connection.cursor() as cursor:
-                    sql = "INSERT INTO `scores`(`name`) VALUE (%s)"
-                    cursor.execute(sql, username)
-                connection.commit()
-        except Exception as e:
-            print(e)
-
-        return redirect(url_for('menu'))
-    else:
-        return render_template('home.html')
+@app.route('/bug_report', methods=["GET"])
+def bug_report():
+    return render_template('report_bug.html')
 
 
-@app.route("/menu", methods=['GET', 'POST'])
-def menu():
-    connection.ping(reconnect=True)
-    #     select username from db
-    with connection:
-        with connection.cursor() as cursor:
-            sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
-            cursor.execute(sql)
-            result = cursor.fetchone()
-            currentUser = result
-    print(currentUser)
-    return render_template('menu.html', categories=categories, name=currentUser)
+@app.route('/thank_you', methods=["POST", "GET"])
+def bug_submit():
+    return render_template("thank_you.html")
 
 
-@app.route("/start/<category>")
-def start(category):
-    connection.ping(reconnect=True)
-    #     select username from db
-    with connection:
-        with connection.cursor() as cursor:
-            sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
-            cursor.execute(sql)
-            result = cursor.fetchone()
-            currentUser = result
-
-    return render_template('start.html', category=category, name=currentUser)
-
-
-# run the app in debug mode
 if __name__ == "__main__":
     app.run(debug=True)
-

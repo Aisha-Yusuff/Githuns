@@ -1,0 +1,308 @@
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --primary-color: pink;
+}
+
+
+.bug-report-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  padding: 14px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: pink;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.bug-report-button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.bug-report-button:hover {
+  background-color:pink;
+  cursor: pointer;
+}
+
+
+body {
+  background-color: #white;
+  overflow: hidden;
+
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* set flex direction to column */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-bottom: 1rem;
+}
+
+
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+  height: 7rem;
+  width: 10rem;
+  margin: 0.5rem;
+
+}
+
+.input-container input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+
+}
+
+
+.radio-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+.input-container .radio-tile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  transition: all 300ms ease;
+}
+
+.input-container ion-icon {
+  color: var(--primary-color);
+  font-size: 3rem;
+}
+
+.input-container label {
+  color: var(--primary-color);
+  font-size: 0.80rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+input:checked+.radio-tile {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 12px var(--primary-color);
+  transform: scale(1.1);
+}
+
+input:hover+.radio-tile {
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+input:checked+.radio-tile ion-icon,
+input:checked+.radio-tile label {
+  color: white;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bug-report-form {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 27px;
+  color: #212529;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 600px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #212529;
+}
+
+textarea {
+  height: 400px;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  color: #495057;
+}
+
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: none;
+  background-color: pink;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rounded-pink-button {
+  background-color: pink;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+
+body{
+background: #ffffff;
+
+    height: 100%;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+}
+
+.wrapper-1{
+  width:100%;
+  height:100vh;
+  display: flex;
+flex-direction: column;
+}
+.wrapper-2{
+  padding :30px;
+  text-align:center;
+}
+h1{
+  font-family: sans-serif;
+  font-size:3em;
+  letter-spacing:3px;
+  color:pink;
+  margin:0;
+  margin-bottom:20px;
+}
+.wrapper-2 p{
+  margin:0;
+  font-size:1.3em;
+  color:black;
+  font-family: sans-serif;
+  letter-spacing:1px;
+}
+
+}
+
+
+@media (min-width:360px){
+  h1{
+    font-size:4.5em;
+  }
+  .go-home{
+    margin-bottom:20px;
+  }
+}
+
+@media (min-width:600px){
+  .content{
+  max-width:1000px;
+  margin:0 auto;
+}
+  .wrapper-1 {
+  height: initial;
+  max-width: 620px;
+  margin: 0 auto;
+  margin-top: 50px;
+  box-shadow: 4px 8px 40px 8px rgba(255, 192, 203, 0.5);
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+}
+
+
