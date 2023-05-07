@@ -33,6 +33,10 @@ currentUser = ''
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    global lives
+    global score
+
+    lives = 5
     if request.method == 'POST' and 'name' in request.form:
 
         # fetch the form data - the user's name
@@ -49,9 +53,10 @@ def home():
                 connection.commit()
         except Exception as e:
             print(e)
-
+        score = 0
         return redirect(url_for('choices'))
     else:
+        score = 0
         return render_template('home.html')
 
 

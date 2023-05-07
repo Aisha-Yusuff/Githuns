@@ -6,7 +6,7 @@ import json
 
 def get_questions(difficulty,category,):
     response = requests.get(
-        f'https://opentdb.com/api.php?amount=10&category={category}&difficulty={difficulty}')
+        f'https://opentdb.com/api.php?amount=10&category={category}&difficulty={difficulty}&type=multiple')
     data = response.json()
     questions_list = []
     for question in data["results"]:
