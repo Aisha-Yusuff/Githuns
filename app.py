@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import questions_api
 from questions import get_question, check_answer,  questions_left
+import requests
 import csv
 
 
