@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Leaderboard</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='leaderboard.css') }}">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px; /* Adjust the font size as desired */
+        }
+
+        th {
+            font-size: 24px; /* Adjust the font size as desired */
+        }
+    </style>
 </head>
+
 <body>
-</head>
-<body>
- <h1 class="leaderboard__title"> Leaderboard</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-		<tbody>
-<!--			{% for name, score in leaderboard %}-->
-<!--				<tr>-->
-<!--					<td>{{ name.name }}</td>-->
-<!--					<td>{{ score.score }}</td>-->
-<!--				</tr>-->
-<!--			{% endfor %}-->
-		{% for item in leaderboard %}
-    <tr>
-      <td>{{ item['name'] }}</td>
-      <td>{{ item['score'] }}</td>
-    </tr>
-    {% endfor %}
-		</tbody>
-	</table>
-    <form action="{{ url_for('return_home') }}" method="post">
-        <input type="submit" value="Play Again">
-    </form>
+    <div class="content">
+        <div class="wrapper-1">
+            <h1>Leaderboard</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Name</th>
+                        <th colspan="2">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in leaderboard %}
+                    <tr>
+                        <td colspan="2" class="name">{{ item['name'] }}</td>
+                        <td colspan="2" class="number">{{ item['score'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="{{ url_for('return_home') }}" method="post">
+                <input class="rounded-pink-button" type="submit" value="Play Again">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+

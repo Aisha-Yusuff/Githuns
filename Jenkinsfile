@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('build'){
             steps {
-                checkout scmGit(branches: [[name: '*/indieaishadom']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Aisha-Yusuff/Githuns']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Aisha-Yusuff/Githuns']])
             }
         }
 
