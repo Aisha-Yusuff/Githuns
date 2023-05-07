@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Trivia Categories</h1>
+
+    <h3>Hello, {{name.name}}! It's time to choose a quiz to play:</h3>
+    <ul>
+        {% for category in categories %}
+         <a href ="{{ url_for('start', category=category) }}"><li>{{ category }}</li></a>
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>
