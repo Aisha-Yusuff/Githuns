@@ -172,10 +172,7 @@ input:checked+.radio-tile label {
 }
 
 .bug-report-form {
-  background-color: #f8f9fa;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+display: block;
 }
 
 .form-title {
@@ -431,6 +428,17 @@ font-size: 18px;
 	margin-left: 1em;
 	cursor: pointer;
 }
+
+.logo  {
+  width: 120px;
+  height: 100px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  padding: 5px 2px;
+}
+
 
 
 
