@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0bbe1b1c-93a6-474a-9b91-21a5876fe32b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/leaderboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/leaderboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/scorepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/scorepage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
