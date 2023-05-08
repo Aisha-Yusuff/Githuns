@@ -68,8 +68,8 @@
   margin-left: 10px;
 }
 
-.bug-report-button:hover {
-  background-color:pink;
+.bug-report-button:hover, .return-home-button:hover, .rounded-pink-button:hover, .leaderboard-button:hover {
+  background-color: #bdb1ff;
   cursor: pointer;
 }
 
