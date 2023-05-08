@@ -10,12 +10,17 @@
 </head>
 <body>
   <h1>Welcome to Guess That!</h1>
-    <!--    name input - to connect to database -->
-    <h3> Please enter your name:</h3>
-    <form method="POST" action="{{ url_for('home') }}">
-        Name:
-        <input type="text" name="name" placeholder="Quiz Master" required/>
-        <input type="submit"/>
+   <div class="logo-container">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+      <img src="../static/images/guessthatlogohome.png" alt="Guess That logo" class="logo-homepage">
+    </svg>
+    </div>
+    <div class="home-form-container">
+        <h1>Are you ready for a Quiz?</h1>
+    <form method="POST" action="{{ url_for('home') }}" >
+        <input type="text" name="name" placeholder="Please enter your name" required class="home-name-input"/>
+        <input type="submit" class="name-button"/>
     </form>
+    </div>
 </body>
 </html>
