@@ -11,12 +11,12 @@
 </head>
 <body>
 <img src="../static/images/guessthatlogohome.png" alt="Guess That logo" class="logo">
-   <h1>Guess That!</h1>
-    <h2>Well done, {{name.name}}! You've completed the Quiz!</h2>
-    <div class="scoreboard">
+<h1>Well Done {{name.name}}!</h1>
+<h2>You completed the Quiz!</h2>
+    <div class="score-container">
         <h2>You Scored:</h2>
         <p class="score">{{score}}</p>
-    <p class="scoremessage"> Click to see where you are on the leaderboard!</p>
+    <p class="score-message"> Click to see where you are on the leaderboard!</p>
     <form action="{{ url_for('return_home') }}" method="post" >
         <input type="submit" value="Return Home" class="return-home-button">
     </form>

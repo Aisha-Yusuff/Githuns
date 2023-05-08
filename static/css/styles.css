@@ -53,7 +53,6 @@
   padding: 14px 12px;
   font-size: 14px;
   font-weight: bold;
-  text-transform: uppercase;
   color: #fff;
   background-color: pink;
   border: none;
@@ -68,7 +67,7 @@
   margin-left: 10px;
 }
 
-.bug-report-button:hover, .return-home-button:hover, .rounded-pink-button:hover, .leaderboard-button:hover, .name-button:hover {
+.bug-report-button:hover, .return-home-button:hover, .rounded-pink-button:hover, .name-button:hover {
   background-color: #F47676;
   cursor: pointer;
 }
@@ -230,7 +229,7 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-.rounded-pink-button, .leaderboard-button {
+.rounded-pink-button {
   background-color: pink;
   color: white;
   border: none;
@@ -272,6 +271,7 @@ h1{
   color:pink;
   margin:0;
   margin-bottom:20px;
+  margin-top: 20px;
 }
 .wrapper-2 p{
   margin:0;
@@ -327,7 +327,7 @@ h1{
   width: 1rem;
   font-size: 1.2rem;
   text-align: left;
-  color: #bdb1ff;
+  color: #F47676;
 }
 
 .name {
@@ -341,7 +341,7 @@ h1{
   margin-left: 10px;
 }
 
-.scoreboard {
+.score-container {
     position: absolute;
     top: 0;
     right: 0;
@@ -350,8 +350,8 @@ h1{
     width: 550px;
     height: 290px;
     margin: auto;
-    background-color: white;
-    box-shadow: 0 32px 44px 0 rgba(0, 0, 0, 0.06);
+    background-color: pink;
+    box-shadow: 0 32px 44px 0 rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     justify-content: center;
     text-align: center;
@@ -359,16 +359,36 @@ h1{
 
 
 .score {
-color: #bdb1ff;
+color: #F47676;
 font-size: 45px;
 margin: 20px;
 margin-bottom: 30px;
 }
 
-.scoremessage {
+.score-message {
  font-size: 18px;
  margin-bottom: 5px;
+ color: white;
 
+}
+ .leaderboard-button {
+  background-color: #F47676;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.leaderboard-button:hover {
+  background-color: #ffd6dd;
 }
 
 .logo-container {
