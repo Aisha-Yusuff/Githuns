@@ -10,4 +10,4 @@ EXPOSE 5000
 
 ENTRYPOINT ["python"]
 
-CMD ["quiz.py"]
+CMD ["app.py"]
