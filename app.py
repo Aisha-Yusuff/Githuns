@@ -92,47 +92,47 @@ def submit():
     global questions_list
     global lives
 
-    try:
-        # Open the connection
-        connection.ping(reconnect=True)
-        with connection:
-            with connection.cursor() as cursor:
-                # Fetch the name from the database
-                sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
-                cursor.execute(sql)
-                name = cursor.fetchone()
-                print(name)
+    # Open the connection
+    connection.ping(reconnect=True)
+    with connection:
+        with connection.cursor() as cursor:
+            # Fetch the name from the database
+            sql = "SELECT name FROM scores ORDER BY ID DESC LIMIT 1"
+            cursor.execute(sql)
+            name = cursor.fetchone()
+            print(name)
 
-            score, q_result, lives = check_answer(request, score, lives)
-            if lives <= 0:
-                return render_template("scorepage.html", score=score, name=name)
+    score, q_result, lives = check_answer(request, score, lives)
+    if lives <= 0:
+        try:
+            # Update the score in the database
+            connection.ping(reconnect=True)
+            with connection:
+                with connection.cursor() as cursor:
+                    sql = "UPDATE `scores` SET `score` = %s WHERE `name` = %s"
+                    cursor.execute(sql, (score, name['name']))
+                connection.commit()
+                print("Score updated successfully.")
+        except pymysql.Error as e:
+            print(f"Error updating score: {e}")
 
-            if questions_left(questions_list):
-                question = get_question(questions_list)
-                return render_template('quiz.html', question=question, score=score, result=q_result, lives=lives)
-            else:
-                highest_score = 0
-                with open("score.csv", mode="r", newline='') as data:
-                    writer = csv.reader(data)
-                    for row in writer:
-                        row_score = int(row[0])
-                        if row_score > highest_score:
-                            highest_score = row_score
-                if score > highest_score:
-                    with open("score.csv", mode="w", newline='') as data:
-                        writer = csv.writer(data)
-                        writer.writerow([score])
+        return render_template("scorepage.html", score=score, name=name)
 
-                # Update the score in the database
-                connection.ping(reconnect=True)
-                with connection:
-                    with connection.cursor() as cursor:
-                        sql = "UPDATE `scores` SET `score` = %s WHERE `name` = %s"
-                        cursor.execute(sql, (score, name['name']))
-                    connection.commit()
-                    print("Score updated successfully.")
-    except pymysql.Error as e:
-        print(f"Error updating score: {e}")
+    if questions_left(questions_list):
+        question = get_question(questions_list)
+        return render_template('quiz.html', question=question, score=score, result=q_result, lives=lives)
+    else:
+        highest_score = 0
+        with open("score.csv", mode="r", newline='') as data:
+            writer = csv.reader(data)
+            for row in writer:
+                row_score = int(row[0])
+                if row_score > highest_score:
+                    highest_score = row_score
+        if score > highest_score:
+            with open("score.csv", mode="w", newline='') as data:
+                writer = csv.writer(data)
+                writer.writerow([score])
 
     return render_template("scorepage.html", score=score, name=name)
 
