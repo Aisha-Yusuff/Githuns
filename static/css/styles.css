@@ -1,7 +1,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 :root {
@@ -9,7 +9,42 @@
 }
 
 
-.bug-report-button {
+        .input-container {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    p {
+
+      font-size:1.3em;
+      color:black;
+      letter-spacing:1px;
+    }
+
+    form {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      text-align: center;
+    }
+
+.bug-report-button, .return-home-button {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -204,20 +239,6 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .rounded-pink-button {
   background-color: pink;
   color: white;
@@ -255,7 +276,6 @@ flex-direction: column;
   text-align:center;
 }
 h1{
-  font-family: sans-serif;
   font-size:3em;
   letter-spacing:3px;
   color:pink;
@@ -266,12 +286,10 @@ h1{
   margin:0;
   font-size:1.3em;
   color:black;
-  font-family: sans-serif;
   letter-spacing:1px;
 }
 
 }
-
 
 @media (min-width:360px){
   h1{
@@ -314,7 +332,6 @@ h1{
 
 
 
-
 .number {
   width: 1rem;
   font-size: 1.2rem;
@@ -325,4 +342,23 @@ h1{
   text-align: left;
   font-size: 1.2rem;
 
+}
+
+
+.input {
+  margin-left: 10px;
+}
+
+.artboard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 610px;
+    height: 375px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 32px 44px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
 }

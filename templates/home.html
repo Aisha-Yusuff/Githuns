@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1> Homepage</h1>
+  <h1>Welcome to Guess That!</h1>
     <!--    name input - to connect to database -->
     <h3> Please enter your name:</h3>
     <form method="POST" action="{{ url_for('home') }}">
-        Name <input type="text" name="name" placeholder="Quiz Master" required/>
+        Name:
+        <input type="text" name="name" placeholder="Quiz Master" required/>
         <input type="submit"/>
     </form>
 </body>

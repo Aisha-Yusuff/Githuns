@@ -109,7 +109,6 @@ body {
   display: grid;
   height: 100vh;
   place-items: center;
-  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .leaderboard {

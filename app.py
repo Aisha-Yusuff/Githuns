@@ -124,6 +124,7 @@ def submit():
                         writer.writerow([score])
 
                 # Update the score in the database
+                connection.ping(reconnect=True)
                 with connection:
                     with connection.cursor() as cursor:
                         sql = "UPDATE `scores` SET `score` = %s WHERE `name` = %s"
