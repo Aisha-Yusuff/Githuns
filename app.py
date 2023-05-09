@@ -3,8 +3,8 @@ import pymysql.cursors
 from cryptography.fernet import Fernet
 import questions_api
 from questions import get_question, check_answer, questions_left
-import requests
 import csv
+import smtplib
 
 # encrypt database password with cryptography to connect with aws ec2 mysql
 key = Fernet.generate_key()
@@ -172,6 +172,7 @@ def bug_report():
 
 @app.route('/thank_you', methods=["POST", "GET"])
 def bug_submit():
+    send_mail = questions_api.send_mail(request, smtplib)
     return render_template("thank_you.html")
 
 
