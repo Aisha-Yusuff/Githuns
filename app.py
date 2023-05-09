@@ -18,6 +18,7 @@ score = 0
 questions_list = []
 lives = 5
 
+# Connect to the database
 connection = pymysql.connect(
                              host='52.56.52.147',
                              port=3306,
