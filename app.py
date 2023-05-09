@@ -18,13 +18,12 @@ score = 0
 questions_list = []
 lives = 5
 
-connection = pymysql.connect(host='localhost',
-                             # host='52.56.52.147',
+connection = pymysql.connect(
+                             host='52.56.52.147',
                              port=3306,
                              database="githuns",
                              user="root",
-                             password='password',
-                             # password=password_bytes,
+                             password=password_bytes,
                              charset="utf8mb4",
                              cursorclass=pymysql.cursors.DictCursor)
 
