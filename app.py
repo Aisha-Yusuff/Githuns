@@ -19,6 +19,7 @@ questions_list = []
 lives = 5
 
 # Connected to the ec2 database:
+# dominique was here
 connection = pymysql.connect(
                              host='52.56.52.147',
                              port=3306,
