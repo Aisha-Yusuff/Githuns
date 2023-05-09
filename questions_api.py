@@ -20,3 +20,15 @@ def get_questions(difficulty,category,):
             question_data["answers"] = answer_list
             questions_list.append(question_data)
     return(questions_list)
+
+
+def send_mail(request,smtplib):
+    message = request.form["message"]
+    title = request.form["title"]
+    email = "dcd5497@gmail.com"
+    password = "wtoddaqzhqrnxrov"
+    connection = smtplib.SMTP("smtp.gmail.com")
+    connection.starttls()
+    connection.login(user=email, password=password)
+    connection.sendmail(from_addr=email, to_addrs=email, msg=f"subject:{title}\n\n{message}")
+    connection.close()
