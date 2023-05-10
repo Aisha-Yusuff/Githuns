@@ -71,7 +71,7 @@ def choices():
             cursor.execute(sql)
             result = cursor.fetchone()
             name = result
-    print(name)
+    pi
     return render_template("choices.html", name=name)
 
 
