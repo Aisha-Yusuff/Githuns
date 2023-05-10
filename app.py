@@ -71,7 +71,7 @@ def choices():
             cursor.execute(sql)
             result = cursor.fetchone()
             name = result
-    pi
+
     return render_template("choices.html", name=name)
 
 
@@ -173,7 +173,7 @@ def bug_report():
 
 @app.route('/thank_you', methods=["POST", "GET"])
 def bug_submit():
-    send_mail = questions_api.send_mail(request, smtplib)
+    #send_mail = questions_api.send_mail(request, smtplib)
     return render_template("thank_you.html")
 
 
